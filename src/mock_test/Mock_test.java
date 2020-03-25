@@ -9,13 +9,11 @@ public class Mock_test {
 	static String hint;
 	public static void main(String[] args) throws IOException {
 		int count = 0;
+		float total_value=0,average_value;
 		JSONObject obj1 = new JSONObject();
 		JSONObject obj2 = new JSONObject();
 		FileWriter fileWriter = new FileWriter("cpu_data.json");
-//		pushing the data fetched from db to HMTL file
 		PrintWriter printWriter = new PrintWriter("htmloutput.html");
-
-//		writing the data to files - Starting of table before looping in the table
 		printWriter.println("<table border=1>");
 		printWriter.println("<caption>MAX AND AVERAGE VALUES OF TRANSACTION CPU DATA</caption>");
 		printWriter.println("<tr><th>TRANSACTION NAME</th><th>AVERAGE CPU TIME</th><th>MAXIMUM CPU TIME</th></tr>");
@@ -29,12 +27,11 @@ public class Mock_test {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String st;
 			float value;
-			float average_value = 0,max_value=0;
+			float max_value=0;
 			while ((st = br.readLine()) != null)
 			{
-
 				String[] array = st.split(" ");
-	
+				
 				if (array[8].length()>0)
 				{
 					if (array[14].length()>0)
@@ -57,7 +54,7 @@ public class Mock_test {
 						value= Float.parseFloat(array[17]);;
 					}	
 				}
-				average_value = (average_value+value)/2;
+				total_value = total_value+value;
 				if (value > max_value)
 				{
 					max_value = value;
@@ -67,6 +64,7 @@ public class Mock_test {
 				//System.out.print(hint);
 				obj2.put(hint, value);
 			}
+			average_value=total_value/count;
 			obj1.put("average", average_value);
 			obj1.put("max", max_value);
 			obj1.put("values",obj2);
