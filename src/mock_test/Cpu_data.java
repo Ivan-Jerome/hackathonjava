@@ -2,7 +2,7 @@ package mock_test;
 import java.io.*;
 import java.sql.*;
 import org.json.simple.JSONObject;
-public class Cpu_data {
+public class mo {
 
 	static String hint;
 	public static void main(String[] args) throws IOException {
