@@ -30,6 +30,7 @@ public class Mock_test {
 			float max_value=0;
 			while ((st = br.readLine()) != null)
 			{
+				System.out.println(st);
 				String[] array = st.split(" ");
 				
 				if (array[8].length()>0)
